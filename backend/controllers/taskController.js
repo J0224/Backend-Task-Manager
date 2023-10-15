@@ -50,7 +50,7 @@ const deleteTask = async (req, res) =>{
     res.status(200)
     .send("Task has been deleted successfully")
   } catch (error) {
-    res.status(500).json({msg: error.message})
+    res.status(500).json({ error: "Internal Server Error", message: error.message })
   }
 }; //Ends of asygn fuction called deleteTask 
 
@@ -63,7 +63,7 @@ const updateTask = async (req, res) => {
     const task = await Task.findByIdAndUpdate(
     {_id: id}, req.body, {new: true, runValidators: true,})
     if(!task){
-      return res.status(404).json(`There is not task with id: ${id}`)
+      return res.status(404).json({error: `There is not task with id: ${id}`})
     }
     res.status(200).json(task)
   } catch (error) {
