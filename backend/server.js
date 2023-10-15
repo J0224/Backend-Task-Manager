@@ -5,6 +5,7 @@ const mongoose = require("mongoose");
 const Task = require ("./model/taskModel");
 const taskRoutes = require("./routes/taskRoute");
 const cors = require("cors");
+const https = require("https");
 
 
 const app = express();
@@ -13,7 +14,8 @@ const app = express();
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(cors({
-  origin: [ "http://localhost:3000", 
+  origin: [ "http://localhost:3000",
+  "https://campanita-task-manager.onrender.com",
   "http://campanita-task-manager.onrender.com"]
 }));
 
